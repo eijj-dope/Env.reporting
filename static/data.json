@@ -1,0 +1,25 @@
+[
+    {
+      "id": 1,
+      "title": "Garbage pile near market",
+      "description": "Large pile of mixed waste beside the public market, causing odor and blocking drainage.",
+      "category": "Garbage pile",
+      "latitude": 13.9205,
+      "longitude": 121.1560,
+      "photo_url": "",
+      "status": "Pending",
+      "created_at": "2025-10-30T02:35:00"
+    },
+    {
+      "id": 2,
+      "title": "Flooding at Barangay Road",
+      "description": "Road gets flooded during heavy rain due to clogged canal.",
+      "category": "Flooding",
+      "latitude": 13.9212,
+      "longitude": 121.1583,
+      "photo_url": "",
+      "status": "Acknowledged",
+      "created_at": "2025-10-29T09:12:00"
+    }
+  ]
+  

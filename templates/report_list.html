@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}All Reports{% endblock %}
+{% block content %}
+<h2>All Reports</h2>
+
+{% if reports %}
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Address</th>
+        <th>Description</th>
+        <th>Status</th>
+    </tr>
+    {% for report in reports %}
+    <tr>
+        <td>{{ report.title }}</td>
+        <td>{{ report.category }}</td>
+        <td>{{ report.address }}</td>
+        <td>{{ report.description }}</td>
+        <td>{{ report.status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No reports have been submitted yet.</p>
+{% endif %}
+{% endblock %}

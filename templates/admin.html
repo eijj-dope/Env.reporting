@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin - Manage Reports</h2>
+
+<table class="reports-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Address</th>
+      <th>Status</th>
+      <th>Update</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in reports %}
+    <tr>
+      <td>{{ r.id }}</td>
+      <td>{{ r.title }}</td>
+      <td>{{ r.category }}</td>
+      <td>{{ r.address }}</td>
+      <td>{{ r.status }}</td>
+      <td>
+        <form action="{{ url_for('admin_update', report_id=r.id) }}" method="post" class="inline-form">
+          <select name="status">
+            <option value="Pending" {% if r.status=='Pending' %}selected{% endif %}>Pending</option>
+            <option value="Acknowledged" {% if r.status=='Acknowledged' %}selected{% endif %}>Acknowledged</option>
+            <option value="Fixed" {% if r.status=='Fixed' %}selected{% endif %}>Fixed</option>
+          </select>
+          <button type="submit">Save</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

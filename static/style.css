@@ -1,0 +1,105 @@
+/* General */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f0f9f4;
+  color: #2e3d32;
+  margin: 0;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #2e7d32;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar a {
+  color: #e8f5e9;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #a5d6a7;
+}
+
+/* Flash messages */
+.flash {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+.flash.success { background-color: #d0f0d0; color: #1b5e20; }
+.flash.danger  { background-color: #ffebee; color: #b71c1c; }
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Buttons */
+.button, form button {
+  background-color: #388e3c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.button:hover, form button:hover {
+  background-color: #2e7d32;
+}
+
+/* Inputs */
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #c8e6c9;
+  background-color: #f9fff9;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #c8e6c9;
+}
+
+th {
+  background-color: #388e3c;
+  color: white;
+  text-align: left;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #1b5e20;
+  color: #f1f8e9;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  border-top: 4px solid #81c784;
+}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Submit Report{% endblock %}
+{% block content %}
+<h2>Submit a New Report</h2>
+
+<form action="{{ url_for('submit_report') }}" method="POST" enctype="multipart/form-data">
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" required>
+
+    <label for="description">Description:</label>
+    <textarea name="description" id="description"></textarea>
+
+    <label for="category">Category:</label>
+    <input type="text" name="category" id="category" required>
+
+    <label for="address">Address:</label>
+    <input type="text" name="address" id="address" required>
+
+    <label for="photo">Photo:</label>
+    <input type="file" name="photo" id="photo" accept="image/*">
+
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
