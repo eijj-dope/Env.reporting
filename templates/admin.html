@@ -1,38 +1,59 @@
-{% extends "base.html" %}
-{% block content %}
-<h2>Admin - Manage Reports</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">🌍Admin Dashboard</div>
+        <nav>
+            <a href="{{ url_for('admin_logout') }}" class="logout-button" >Log Out</a>
+        </nav>
+    </header>
 
-<table class="reports-table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Title</th>
-      <th>Category</th>
-      <th>Address</th>
-      <th>Status</th>
-      <th>Update</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for r in reports %}
-    <tr>
-      <td>{{ r.id }}</td>
-      <td>{{ r.title }}</td>
-      <td>{{ r.category }}</td>
-      <td>{{ r.address }}</td>
-      <td>{{ r.status }}</td>
-      <td>
-        <form action="{{ url_for('admin_update', report_id=r.id) }}" method="post" class="inline-form">
-          <select name="status">
-            <option value="Pending" {% if r.status=='Pending' %}selected{% endif %}>Pending</option>
-            <option value="Acknowledged" {% if r.status=='Acknowledged' %}selected{% endif %}>Acknowledged</option>
-            <option value="Fixed" {% if r.status=='Fixed' %}selected{% endif %}>Fixed</option>
-          </select>
-          <button type="submit">Save</button>
-        </form>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{% endblock %}
+    <main class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+        <h1>Welcome, Admin</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for report in reports %}
+                <tr>
+                    <td>{{ report.id }}</td>
+                    <td>{{ report.title }}</td>
+                    <td>{{ report.category }}</td>
+                    <td>{{ report.status }}</td>
+                    <td>
+                        <form action="{{ url_for('admin_update', report_id=report.id) }}" method="POST">
+                            <select name="status">
+                                <option value="Pending" {% if report.status == "Pending" %}selected{% endif %}>Pending</option>
+                                <option value="In Progress" {% if report.status == "In Progress" %}selected{% endif %}>In Progress</option>
+                                <option value="Resolved" {% if report.status == "Resolved" %}selected{% endif %}>Resolved</option>
+                            </select>
+                            <button type="submit" class="button">Update</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

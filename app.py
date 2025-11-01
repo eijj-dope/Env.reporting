@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask import session
 from flask import send_from_directory
 from flask_migrate import Migrate
 from dotenv import load_dotenv
@@ -12,6 +13,9 @@ from flask import Flask, render_template
 load_dotenv()
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
+
+# Set the secret key
+app.secret_key = 'group-3'
 
 UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -107,10 +111,36 @@ def api_reports():
     reports = Report.query.order_by(Report.created_at.desc()).all()
     return jsonify([r.to_dict() for r in reports])
 
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
+
+@app.route("/admin/login", methods=["GET", "POST"])
+def admin_login():
+    if request.method == "POST":
+        password = request.form.get("password")
+        if password == ADMIN_PASSWORD:
+            session['admin_logged_in'] = True
+            flash("Welcome, Admin!", "success")  # This flash will appear in admin page
+            return redirect(url_for("admin"))  # redirect to admin dashboard
+        else:
+            flash("Incorrect password.", "danger")
+            return redirect(url_for("admin_login"))
+    return render_template("admin_login.html")
+
+
 @app.route("/admin")
 def admin():
+    if not session.get("admin_logged_in"):
+        flash("Please log in as admin first.", "danger")
+        return redirect(url_for("admin_login"))
+    
     all_reports = Report.query.order_by(Report.created_at.desc()).all()
     return render_template("admin.html", reports=all_reports)
+
+@app.route("/admin/logout")
+def admin_logout():
+    session.pop("admin_logged_in", None)
+    flash("Logged out successfully.", "success")
+    return redirect(url_for("index"))
 
 @app.route("/admin/update/<int:report_id>", methods=["POST"])
 def admin_update(report_id):

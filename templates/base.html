@@ -6,15 +6,18 @@
     <title>{% block title %}Environmental Reporting System{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="{% if request.endpoint == 'index' %}home-page{% endif %}">
+
 
     <header class="navbar">
-        <div class="logo">🌍 EnviroReport</div>
+        <div class="logo">🌍Environmental Report in Padre Garcia</div>
         <nav>
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('report_form') }}">Submit Report</a>
-            <a href="{{ url_for('reports') }}">All Reports</a>
-            <a href="{{ url_for('admin') }}">Admin</a>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('report_form') }}">Submit Report</a></li>
+                <li><a href="{{ url_for('reports') }}">All Reports</a></li>
+                <li><a href="{{ url_for('admin') }}">Admin</a></li>
+            </ul>
         </nav>
     </header>
 

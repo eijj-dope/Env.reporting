@@ -1,9 +1,10 @@
 /* General */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
-  background-color: #f0f9f4;
+  background: linear-gradient(120deg, #f0f9f4 0%, #e0f7e9 100%);
   color: #2e3d32;
   margin: 0;
+  transition: background 0.3s;
 }
 
 /* Navbar */
@@ -14,65 +15,121 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 0 0 12px 12px;
+  font-size: 0.95rem;
 }
 
 .navbar a {
   color: #e8f5e9;
   text-decoration: none;
-  margin-left: 20px;
+  margin: 0 15px;
   font-weight: 500;
+  position: relative;
   transition: color 0.3s;
+}
+
+.navbar a::after {
+  content: '';
+  display: block;
+  width: 0%;
+  height: 2px;
+  background: #a5d6a7;
+  transition: width 0.3s;
 }
 
 .navbar a:hover {
   color: #a5d6a7;
 }
 
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* Align navbar items horizontally */
+.navbar ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  margin: 0 10px;
+}
+
 /* Flash messages */
 .flash {
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 5px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-.flash.success { background-color: #d0f0d0; color: #1b5e20; }
-.flash.danger  { background-color: #ffebee; color: #b71c1c; }
+
+.flash.success {
+  background-color: #d0f0d0;
+  color: #1b5e20;
+}
+
+.flash.danger {
+  background-color: #ffebee;
+  color: #b71c1c;
+}
 
 /* Container */
 .container {
   max-width: 900px;
   margin: 2rem auto;
   background: #ffffff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 /* Buttons */
-.button, form button {
+.button, .logout-button, form button {
   background-color: #388e3c;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
   text-decoration: none;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  text-align: center;
 }
 
-.button:hover, form button:hover {
+.button:hover, .logout-button:hover, form button:hover {
   background-color: #2e7d32;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Inputs */
 form input, form textarea {
   width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 6px;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
   border: 1px solid #c8e6c9;
   background-color: #f9fff9;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input:focus, form textarea:focus {
+  outline: none;
+  border-color: #81c784;
+  box-shadow: 0 0 8px rgba(129, 199, 132, 0.4);
 }
 
 /* Tables */
@@ -80,11 +137,15 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
 }
 
 th, td {
-  padding: 12px 10px;
+  padding: 14px 12px;
   border-bottom: 1px solid #c8e6c9;
+  transition: background 0.3s;
 }
 
 th {
@@ -93,13 +154,168 @@ th {
   text-align: left;
 }
 
+tr:hover {
+  background-color: #e8f5e9;
+}
+
+/* Action buttons inside table rows - horizontal */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.table-row:hover .action-buttons {
+  opacity: 1;
+}
+
+/* Flash messages */
+.admin-login-container .flash {
+  margin-bottom: 15px;
+}
+
 /* Footer */
 footer {
   text-align: center;
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: #1b5e20;
   color: #f1f8e9;
-  margin-top: 3rem;
+  margin-top: 8rem;
   font-size: 0.9rem;
-  border-top: 4px solid #81c784;
+  border-top: px solid #81c784;
+  transition: background-color 0.3s;
 }
+
+footer:hover {
+  background-color: #2e7d32;
+}
+
+body.admin-login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(120deg, #f0f9f4 0%, #e0f7e9 100%);
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Login container */
+.admin-login-container {
+  max-width: 400px;
+  width: 100%;
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.admin-login-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+}
+
+.admin-login-container h2 {
+  margin-bottom: 1.5rem;
+  color: #2e3d32;
+}
+
+.admin-login-container form input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0 20px 0;
+  border-radius: 8px;
+  border: 1px solid #c8e6c9;
+  background-color: #f9fff9;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.admin-login-container form input[type="password"]:focus {
+  outline: none;
+  border-color: #81c784;
+  box-shadow: 0 0 8px rgba(129, 199, 132, 0.4);
+}
+
+/* Button group for login */
+.admin-login-container .button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.admin-login-container .button {
+  background-color: #388e3c;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.admin-login-container .button:hover {
+  background-color: #2e7d32;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Flash messages */
+.admin-login-container .flash {
+  margin-bottom: 15px;
+}
+
+/* Log Out Button */
+.logout-button {
+  background-color: #388e3c; /* Green background */
+  color: white; /* White text */
+  padding: 12px 24px; /* Proper padding for size */
+  border: none; /* Remove border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  font-weight: bold; /* Bold text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Ensure proper alignment */
+  text-align: center; /* Center text */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; /* Smooth transitions */
+}
+
+.logout-button:hover {
+  background-color: #2e7d32; /* Darker green on hover */
+  transform: translateY(-2px); /* Slight upward movement */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+}
+
+
+/* Background image for the homepage */
+body.home-page {
+  background: url("../images/background.jpg") no-repeat center center fixed;
+  background-size: cover; /* Ensure the image covers the entire background */
+  color: rgb(12, 12, 12); /* Adjust text color for better contrast */
+  margin: 0;
+  padding: 0;
+}
+
+.home-container img {
+  max-width: 100%; /* Ensure the image doesn't exceed the container width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 12px; /* Optional: Add rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Optional: Add a subtle shadow */
+}
+
+/* Completely remove the white container on the homepage */
+body.home-page .container {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  max-height: auto !important;
+  border-radius: 0 !important;
+}
+
