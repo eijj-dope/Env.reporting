@@ -25,7 +25,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limit file size to 16MB
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # PostgreSQL connection
-DB_URL = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/env_reporting_db")
+DB_URL = os.getenv("DATABASE_URL")
 app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
