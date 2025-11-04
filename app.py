@@ -26,8 +26,11 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # PostgreSQL connection
 DB_URL = os.getenv("DATABASE_URL")
-app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+if DB_URL and "sslmode" not in DB_URL:
+    DB_URL += "?sslmode=require"
+
+app.config["SQLALCHEMY_DATABASE_URI"] = DB_URL
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
