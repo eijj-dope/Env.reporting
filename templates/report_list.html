@@ -12,13 +12,13 @@
         <th>Description</th>
         <th>Status</th>
     </tr>
-    {% for report in reports %}
+    {% for report, category_name, status_name in reports %}
     <tr>
         <td>{{ report.title }}</td>
-        <td>{{ report.category }}</td>
+        <td>{{ category_name }}</td>
         <td>{{ report.address }}</td>
         <td>{{ report.description }}</td>
-        <td>{{ report.status }}</td>
+        <td>{{ status_name }}</td>
     </tr>
     {% endfor %}
 </table>

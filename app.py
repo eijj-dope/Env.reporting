@@ -38,17 +38,28 @@ migrate = Migrate(app, db)
 # -----------------------------
 # Database Model
 # -----------------------------
+class Category(db.Model):
+    __tablename__ = "categories"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=True, nullable=False)
+
+class Status(db.Model):
+    __tablename__ = "statuses"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=True, nullable=False)
+
 class Report(db.Model):
     __tablename__ = "reports"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     description = db.Column(db.Text, nullable=True)
-    category = db.Column(db.String(100), nullable=False)
-    address = db.Column(db.String(300), nullable=False)  # replaced latitude/longitude
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+    status_id = db.Column(db.Integer, db.ForeignKey('statuses.id'))
+    address = db.Column(db.String(300), nullable=False)
     photo_url = db.Column(db.String(500), nullable=True)
-    status = db.Column(db.String(50), default="Pending")
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
 
     def to_dict(self):
         return {
@@ -74,12 +85,12 @@ def index():
 def submit_report():
     title = request.form.get("title")
     description = request.form.get("description")
-    category = request.form.get("category")
+    category_name = request.form.get("category")
     address = request.form.get("address")
     photo = request.files.get("photo")
 
     # Validation
-    if not title or not category or not address:
+    if not title or not category_name or not address:
         flash("Title, category, and address are required.", "danger")
         return redirect(url_for("index"))
 
@@ -91,23 +102,41 @@ def submit_report():
         photo.save(photo_path)
         photo_url = f"/uploads/{filename}"
 
-    new = Report(
+    # Get category ID
+    category = Category.query.filter_by(name=category_name).first()
+    if not category:
+        flash("Invalid category selected.", "danger")
+        return redirect(url_for("index"))
+
+    # Get default status ID ("Pending")
+    status = Status.query.filter_by(name="Pending").first()
+
+    # Create new report
+    new_report = Report(
         title=title,
         description=description,
-        category=category,
+        category_id=category.id,
+        status_id=status.id,
         address=address,
-        photo_url=photo_url,
-        status="Pending"
+        photo_url=photo_url
     )
-    db.session.add(new)
+
+    db.session.add(new_report)
     db.session.commit()
     flash("Report submitted. Thank you!", "success")
     return redirect(url_for("index"))
 
 @app.route("/reports")
 def reports():
-    all_reports = Report.query.order_by(Report.created_at.desc()).all()
-    return render_template("report_list.html", reports=all_reports)
+    reports = db.session.query(
+        Report,
+        Category.name.label("category_name"),
+        Status.name.label("status_name")
+    ).join(Category, Report.category_id == Category.id
+    ).join(Status, Report.status_id == Status.id
+    ).order_by(Report.created_at.desc()).all()
+
+    return render_template("report_list.html", reports=reports)
 
 @app.route("/api/reports")
 def api_reports():
@@ -135,9 +164,17 @@ def admin():
     if not session.get("admin_logged_in"):
         flash("Please log in as admin first.", "danger")
         return redirect(url_for("admin_login"))
-    
-    all_reports = Report.query.order_by(Report.created_at.desc()).all()
+
+    all_reports = db.session.query(
+        Report,
+        Category.name.label("category_name"),
+        Status.name.label("status_name")
+    ).join(Category, Report.category_id == Category.id
+    ).join(Status, Report.status_id == Status.id
+    ).order_by(Report.created_at.desc()).all()
+
     return render_template("admin.html", reports=all_reports)
+
 
 @app.route("/admin/logout")
 def admin_logout():
