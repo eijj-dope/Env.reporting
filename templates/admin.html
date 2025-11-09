@@ -1,59 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <header class="navbar">
-        <div class="logo">🌍Admin Dashboard</div>
-        <nav>
-            <a href="{{ url_for('admin_logout') }}" class="logout-button" >Log Out</a>
-        </nav>
-    </header>
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
 
-    <main class="container">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="flash {{ category }}">{{ message }}</div>
+{% block content %}
+<h1>Welcome, Admin</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for report, category_name, status_name in reports %}
+        <tr>
+            <td>{{ report.id }}</td>
+            <td>{{ report.title }}</td>
+            <td>{{ category_name }}</td>
+            <td>{{ status_name }}</td>
+            <td>
+                <form action="{{ url_for('admin_update', report_id=report.id) }}" method="POST">
+                    <select name="status">
+                        <option value="Pending" {% if status_name == "Pending" %}selected{% endif %}>Pending</option>
+                        <option value="In Progress" {% if status_name == "In Progress" %}selected{% endif %}>In Progress</option>
+                        <option value="Resolved" {% if status_name == "Resolved" %}selected{% endif %}>Resolved</option>
+                    </select>
+                    <button type="submit" class="button">Update</button>
+                </form>
+            </td>
+        </tr>
         {% endfor %}
-      {% endif %}
-    {% endwith %}
-        <h1>Welcome, Admin</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Category</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for report in reports %}
-                <tr>
-                    <td>{{ report.id }}</td>
-                    <td>{{ report.title }}</td>
-                    <td>{{ report.category }}</td>
-                    <td>{{ report.status }}</td>
-                    <td>
-                        <form action="{{ url_for('admin_update', report_id=report.id) }}" method="POST">
-                            <select name="status">
-                                <option value="Pending" {% if report.status == "Pending" %}selected{% endif %}>Pending</option>
-                                <option value="In Progress" {% if report.status == "In Progress" %}selected{% endif %}>In Progress</option>
-                                <option value="Resolved" {% if report.status == "Resolved" %}selected{% endif %}>Resolved</option>
-                            </select>
-                            <button type="submit" class="button">Update</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </main>
-</body>
-</html>
+    </tbody>
+</table>
+{% endblock %}

@@ -79,7 +79,7 @@ class Report(db.Model):
 @app.route("/")
 def index():
     recent = Report.query.order_by(Report.created_at.desc()).limit(5).all()
-    return render_template("index.html", recent=recent)
+    return render_template("index.html", recent=recent, title="Home")
 
 @app.route("/submit", methods=["POST"])
 def submit_report():
@@ -175,7 +175,6 @@ def admin():
 
     return render_template("admin.html", reports=all_reports)
 
-
 @app.route("/admin/logout")
 def admin_logout():
     session.pop("admin_logged_in", None)
@@ -194,7 +193,8 @@ def admin_update(report_id):
 
 @app.route("/report")
 def report_form():
-    return render_template("report_form.html")
+    categories = Category.query.all()
+    return render_template("report_form.html", categories=categories)
 
 @app.route("/uploads/<filename>")
 def uploaded_file(filename):
