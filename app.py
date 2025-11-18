@@ -26,9 +26,8 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # PostgreSQL connection
 DB_URL = os.getenv("DATABASE_URL")
-if DB_URL and "sslmode" not in DB_URL:
+if os.getenv("USE_SSL", "false").lower() == "true" and DB_URL and "sslmode" not in DB_URL:
     DB_URL += "?sslmode=require"
-
 app.config["SQLALCHEMY_DATABASE_URI"] = DB_URL
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -184,11 +183,20 @@ def admin_logout():
 @app.route("/admin/update/<int:report_id>", methods=["POST"])
 def admin_update(report_id):
     report = Report.query.get_or_404(report_id)
-    new_status = request.form.get("status")
-    if new_status:
-        report.status = new_status
-        db.session.commit()
-        flash("Status updated.", "success")
+    new_status_name = request.form.get("status")
+    
+    if new_status_name:
+        # Find the status by name
+        new_status = Status.query.filter_by(name=new_status_name).first()
+        if new_status:
+            report.status_id = new_status.id  # Update the status_id
+            db.session.commit()
+            flash("Status updated.", "success")
+        else:
+            flash("Invalid status.", "danger")
+    else:
+        flash("No status provided.", "danger")
+    
     return redirect(url_for("admin"))
 
 @app.route("/report")
