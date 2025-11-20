@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Environmental Reporting System{% endblock %}</title>
+    <title>{% block title %}Enviro-Track Website{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="{% if title == 'Home' %}home-page{% endif %}">
@@ -11,9 +11,9 @@
     <header class="navbar">
         <div class="logo">
             {% if session.get('admin_logged_in') %}
-                🌍Admin Dashboard
+                Admin Dashboard
             {% else %}
-                🌍Environmental Report in Padre Garcia
+                <b>⟳ Enviro-Track</b>
             {% endif %}
         </div>
         <nav>
@@ -48,25 +48,25 @@
         <div class="footer-container">
             <div class="footer-column">
                 <h4>Contact Us</h4>
-                <p>Municipality of Padre Garcia, Batangas</p>
-                <p>Email: mayor@padregarcia.gov.ph</p>
-                <p>Phone: (043) 430 0319</p>
-                <p>Website: <a href="https://www.padregarcia.gov.ph/home" target= "_blank">Padre Garcia Web Page</a> </p>
+                <p><b>Municipality of Padre Garcia, Batangas</b></p>
+                <p><b>Email</b>: mayor@padregarcia.gov.ph</p>
+                <p><b>Phone</b>: (043) 430 0319</p>
+                <p><b>Website</b>: <a href="https://www.padregarcia.gov.ph/home" target= "_blank"><u>Padre Garcia Web Page</u></a> </p>
             </div>
             <div class="footer-column">
                 <h4>Follow Us</h4>
-                <p><a href="https://www.facebook.com/PadreGarcia" target="_blank">Facebook Page</a></p>
+                <p><a href="https://www.facebook.com/PadreGarcia" target="_blank"><u>Municipality of Padre Garcia</u></a></p>
             </div>
             <div class="footer-column">
                 <h4>Developers</h4>
-                <p>BSIT 2103</p>
-                <p>Group: 3</p>
-                <p>GitHub Repository: <a href="https://github.com/eijj-dope" target="_blank">eijj-dope</a></p>
-                <button id="dev-info-btn" class="button dev-btn">View Developer Info</button>
+                <p><b>BSIT 2103</b></p>
+                <p><b>Group Number</b>: 3</p>
+                <p><b>GitHub Repository</b>: <a href="https://github.com/eijj-dope" target="_blank"><u>eijj-dope</u></a></p>
+                <button id="dev-info-btn" class="button dev-btn">View Developers' Info</button>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 Environmental Reporting System | Built with Flask & PostgreSQL</p>
+            <p>© 2025 Enviro-Track Website | Built with Flask & PostgreSQL</p>
         </div>
     </footer>
 
