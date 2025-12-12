@@ -14,7 +14,7 @@
     <select name="category" id="category" required>
         <option value="">--Select a category--</option>
         {% for c in categories %}
-        <option value="{{ c.name }}">{{ c.name }}</option>
+        <option value="{{ c.category_name }}">{{ c.category_name }}</option>
         {% endfor %}
     </select>
 

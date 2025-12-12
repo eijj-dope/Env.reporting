@@ -10,6 +10,7 @@
             <th>Title</th>
             <th>Category</th>
             <th>Status</th>
+            <th>Image</th> <!-- Image column -->
             <th>Actions</th>
         </tr>
     </thead>
@@ -21,7 +22,17 @@
             <td>{{ category_name }}</td>
             <td>{{ status_name }}</td>
             <td>
-                <form action="{{ url_for('admin_update', report_id=report.id) }}" method="POST">
+                {% if report.photo_url %}
+                    <a href="{{ report.photo_url }}" target="_blank">
+                        <img src="{{ report.photo_url }}" alt="Report Image" style="max-width:100px; max-height:100px;">
+                    </a>
+                {% else %}
+                    No Image
+                {% endif %}
+            </td>
+            <td style="display:flex; justify-content:space-between; align-items:center;">
+                <!-- Left side: status update -->
+                <form action="{{ url_for('admin_update', report_id=report.id) }}" method="POST" style="display:flex; gap:5px; align-items:center;">
                     <select name="status">
                         <option value="Pending" {% if status_name == "Pending" %}selected{% endif %}>Pending</option>
                         <option value="In Progress" {% if status_name == "In Progress" %}selected{% endif %}>In Progress</option>
@@ -29,7 +40,13 @@
                     </select>
                     <button type="submit" class="button">Update</button>
                 </form>
+            
+                <!-- Right side: delete button -->
+                <form action="{{ url_for('admin_delete', report_id=report.id) }}" method="POST">
+                    <button type="submit" class="button" onclick="return confirm('Are you sure you want to delete this report?');">Delete</button>
+                </form>
             </td>
+            
         </tr>
         {% endfor %}
     </tbody>

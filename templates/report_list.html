@@ -1,26 +1,45 @@
 {% extends "base.html" %}
 {% block title %}All Reports{% endblock %}
+
 {% block content %}
 <h2>All Reports</h2>
 
+<!-- Category Filter Form -->
+<form method="get" action="{{ url_for('reports') }}">
+    <label for="category">Filter by Category:</label>
+    <select name="category" id="category" onchange="this.form.submit()">
+        <option value="">All Categories</option>
+        {% for cat in categories %}
+            <option value="{{ cat.category_name }}" {% if selected_category == cat.category_name %}selected{% endif %}>
+                {{ cat.category_name }}
+            </option>
+        {% endfor %}
+    </select>
+    <noscript><input type="submit" value="Filter"></noscript>
+</form>
+
 {% if reports %}
 <table border="1" cellpadding="8">
-    <tr>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Address</th>
-        <th>Description</th>
-        <th>Status</th>
-    </tr>
-    {% for report, category_name, status_name in reports %}
-    <tr>
-        <td>{{ report.title }}</td>
-        <td>{{ category_name }}</td>
-        <td>{{ report.address }}</td>
-        <td>{{ report.description }}</td>
-        <td>{{ status_name }}</td>
-    </tr>
-    {% endfor %}
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Address</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for report, category_name, status_name in reports %}
+        <tr>
+            <td>{{ report.title }}</td>
+            <td>{{ category_name }}</td>
+            <td>{{ report.address }}</td>
+            <td>{{ report.description }}</td>
+            <td>{{ status_name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 {% else %}
 <p>No reports have been submitted yet.</p>

@@ -1,7 +1,7 @@
 /* General */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
-  background: linear-gradient(120deg, #f0f9f4 0%, #e0f7e9 100%);
+  background: linear-gradient(120deg, #ffffff 0%, #e0f7e9 100%);
   color: #2e3d32;
   margin: 0;
   transition: background 0.3s;
@@ -465,6 +465,14 @@ form select {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+select,
+select option {
+    color: #000 !important;
+    background-color: #fff !important;
+    font-family: Arial, sans-serif !important;
+}
+
+
 form select:focus {
   outline: none;
   border-color: #81c784;
@@ -649,3 +657,21 @@ form select:focus {
   max-height: 80vh;
   overflow-y: auto;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+form select,
+form select option {
+    font-family: Arial, sans-serif !important;
+    color: #000 !important;
+    background-color: #fff !important;
+}
+
+form select option:checked,
+form select option:hover {
+    background-color: #d6e4ff !important;  /* visible blueish hover */
+    color: #000 !important;
+}
+

@@ -1,25 +1,202 @@
 [
-    {
-      "id": 1,
-      "title": "Garbage pile near market",
-      "description": "Large pile of mixed waste beside the public market, causing odor and blocking drainage.",
-      "category": "Garbage pile",
-      "latitude": 13.9205,
-      "longitude": 121.1560,
-      "photo_url": "",
-      "status": "Pending",
-      "created_at": "2025-10-30T02:35:00"
-    },
-    {
-      "id": 2,
-      "title": "Flooding at Barangay Road",
-      "description": "Road gets flooded during heavy rain due to clogged canal.",
-      "category": "Flooding",
-      "latitude": 13.9212,
-      "longitude": 121.1583,
-      "photo_url": "",
-      "status": "Acknowledged",
-      "created_at": "2025-10-29T09:12:00"
-    }
-  ]
-  
+  {
+    "title": "Flood",
+    "description": "Flooding near the capitol",
+    "address": "San Miguel Padre Garcia Batangas",
+    "photo_url": "/uploads/Screenshot_2025-11-16_044659.png",
+    "created_at": "2025-11-17 23:14:10.803049",
+    "updated_at": "2025-11-18 07:46:26.50984",
+    "category_id": 2,
+    "status_id": 2
+  },
+  {
+    "title": "illegal dumping",
+    "description": "Lots of dumps near road",
+    "address": "San Miguel Padre Garcia/near Ate Pasing house",
+    "photo_url": "/uploads/CAM00574.jpg",
+    "created_at": "2025-11-18 00:04:57.364239",
+    "updated_at": "2025-12-03 01:40:08.527149",
+    "category_id": 1,
+    "status_id": 3
+  },
+  {
+    "title": "Garbage Pile-up Near Barangay Hall",
+    "description": "Too much garbage near the hall. Smells bad",
+    "address": "Purok 5, Barangay Poblacion, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_164535.png",
+    "created_at": "2025-12-09 08:45:48.582975",
+    "updated_at": "2025-12-09 08:45:48.582975",
+    "category_id": 1,
+    "status_id": 1
+  },
+  {
+    "title": "Flooding in San Miguel Road",
+    "description": "Road floods when it rains. Hard to pass",
+    "address": "San Miguel Road, Barangay San Miguel, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_164654.png",
+    "created_at": "2025-12-09 08:47:07.281373",
+    "updated_at": "2025-12-09 08:47:07.281373",
+    "category_id": 2,
+    "status_id": 1
+  },
+  {
+    "title": "Damaged Street Lights in Barangay Banaybanay",
+    "description": "Street lights broken. Dark at night.",
+    "address": "Barangay Banaybanay, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_164759.png",
+    "created_at": "2025-12-09 08:48:08.789258",
+    "updated_at": "2025-12-09 08:48:08.789258",
+    "category_id": 8,
+    "status_id": 1
+  },
+  {
+    "title": "Illegal Dumping in Forest Area",
+    "description": "People dumping trash in the forest. Not good.",
+    "address": "Forest Area, Barangay Payapa, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_164927.png",
+    "created_at": "2025-12-09 08:49:39.823606",
+    "updated_at": "2025-12-09 08:49:39.823606",
+    "category_id": 1,
+    "status_id": 1
+  },
+  {
+    "title": "Water Leakage in Public Faucet",
+    "description": "Faucet leaking. Wasting water.",
+    "address": "Public Faucet, Barangay Quilo-quilo North, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_165032.png",
+    "created_at": "2025-12-09 08:50:48.14604",
+    "updated_at": "2025-12-09 08:50:48.14604",
+    "category_id": 7,
+    "status_id": 1
+  },
+  {
+    "title": "Vandalism in Public Park",
+    "description": "Park has graffiti. Looks bad.",
+    "address": "Public Park, Barangay Mangas, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_165210.png",
+    "created_at": "2025-12-09 08:52:19.996806",
+    "updated_at": "2025-12-09 08:52:19.996806",
+    "category_id": 9,
+    "status_id": 1
+  },
+  {
+    "title": "Contaminated River Water",
+    "description": "River is dirty. Not safe to use.",
+    "address": "River, Barangay Castillo, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_165320.png",
+    "created_at": "2025-12-09 08:53:33.493366",
+    "updated_at": "2025-12-09 08:53:33.493366",
+    "category_id": 3,
+    "status_id": 1
+  },
+  {
+    "title": "Improper Waste Segregation",
+    "description": "People mix trash. Hard to recycle.",
+    "address": "Various locations in Barangay Payapa Ibaba, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_165435.png",
+    "created_at": "2025-12-09 08:55:17.020748",
+    "updated_at": "2025-12-09 08:55:17.020748",
+    "category_id": 1,
+    "status_id": 1
+  },
+  {
+    "title": "Potholes on Main Road",
+    "description": "Road has holes. Bumpy ride.",
+    "address": "Main Road, Barangay Pansol, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_165742.png",
+    "created_at": "2025-12-09 08:57:53.074559",
+    "updated_at": "2025-12-09 08:57:53.074559",
+    "category_id": 6,
+    "status_id": 1
+  },
+  {
+    "title": "Chemical Waste Leakage",
+    "description": "Chemicals leaking. Dangerous.",
+    "address": "Near Factory, Barangay Bukal, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_165947.png",
+    "created_at": "2025-12-09 08:59:59.438085",
+    "updated_at": "2025-12-09 08:59:59.438085",
+    "category_id": 3,
+    "status_id": 1
+  },
+  {
+    "title": "Clogged Drainage System",
+    "description": "Drains are blocked. Causes flooding.",
+    "address": "Various locations in Barangay San Felipe, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_165502.png",
+    "created_at": "2025-12-09 09:01:06.998612",
+    "updated_at": "2025-12-09 09:01:06.998612",
+    "category_id": 2,
+    "status_id": 1
+  },
+  {
+    "title": "Unsafe Electrical Wiring",
+    "description": "Wires are exposed. Dangerous to touch.",
+    "address": "Public Area, Barangay San Felipe, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_170205.png",
+    "created_at": "2025-12-09 09:02:13.213292",
+    "updated_at": "2025-12-09 09:02:13.213292",
+    "category_id": 8,
+    "status_id": 1
+  },
+  {
+    "title": "Stagnant Water and Mosquito Breeding Sites",
+    "description": "Old tires and containers are collecting rainwater, creating breeding grounds for mosquitos. Increased risk of dengue fever.",
+    "address": "Barangay Cawongan, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_170304.png",
+    "created_at": "2025-12-09 09:03:22.884887",
+    "updated_at": "2025-12-09 09:03:22.884887",
+    "category_id": 3,
+    "status_id": 1
+  },
+  {
+    "title": "Abandoned Vehicle",
+    "description": "Old car/unattended car blocking the road.",
+    "address": "Along the road, Barangay Quilo Quilo North, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_170528.png",
+    "created_at": "2025-12-09 09:05:39.636714",
+    "updated_at": "2025-12-09 09:05:39.636714",
+    "category_id": 6,
+    "status_id": 1
+  },
+  {
+    "title": "Deforestation in Protected Area",
+    "description": "Trees being cut down. Forest disappearing.",
+    "address": "Forest Area, Barangay Pansol, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_170723.png",
+    "created_at": "2025-12-09 09:07:38.157874",
+    "updated_at": "2025-12-09 09:07:38.157874",
+    "category_id": 9,
+    "status_id": 1
+  },
+  {
+    "title": "Uncollected Waste in Residential Area",
+    "description": "Trash not picked up. Smells bad.",
+    "address": "Residential Area, Barangay Tangob, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_170850.png",
+    "created_at": "2025-12-09 09:09:00.940974",
+    "updated_at": "2025-12-09 09:09:00.940974",
+    "category_id": 1,
+    "status_id": 1
+  },
+  {
+    "title": "Erosion Along Riverbank",
+    "description": "Riverbank is washing away.",
+    "address": "Riverbank, Barangay Maugat, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_171626.png",
+    "created_at": "2025-12-09 09:16:42.513008",
+    "updated_at": "2025-12-09 09:16:42.513008",
+    "category_id": 9,
+    "status_id": 1
+  },
+  {
+    "title": "Air Pollution from Factory",
+    "description": "Factory makes too much smoke. Hard to breathe.",
+    "address": "Barangay Bawi, Padre Garcia, Batangas",
+    "photo_url": "/uploads/Screenshot_2025-12-09_171954.png",
+    "created_at": "2025-12-09 09:20:09.275203",
+    "updated_at": "2025-12-09 09:20:09.275203",
+    "category_id": 3,
+    "status_id": 1
+  }
+]
