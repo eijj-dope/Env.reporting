@@ -85,8 +85,8 @@ By encouraging proper waste management, improving environmental reporting, and f
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/eijj-dope/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/eijj-dope/Env.reporting.git
+cd Env.reporting
 ```
 
 ### 2️⃣ Install Dependencies
@@ -100,9 +100,10 @@ pip install -r requirements.txt
 Create `.env`:
 
 ```
-DATABASE_URL=postgresql://user:password@localhost:5432/dbname
+DATABASE_URL=postgresql://postgres:Russelflores2005@localhost:5432/envreportdb
+FLASK_SECRET=group-3
+USE_SSL=False
 ADMIN_PASSWORD=Admin@123
-USE_SSL=false
 ```
 
 ### 4️⃣ Run Database Migrations
