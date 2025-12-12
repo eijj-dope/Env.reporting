@@ -27,6 +27,6 @@ CREATE TABLE public.reports (
     photo_url character varying(500),
     created_at timestamp without time zone DEFAULT now(),
     updated_at timestamp without time zone DEFAULT now(),
-    category_id integer REFERENCES public.categories(category_id),
-    status_id integer REFERENCES public.statuses(status_id)
+    category_id_fk integer REFERENCES public.categories(category_id),
+    status_id_fk integer REFERENCES public.statuses(status_id)
 );
